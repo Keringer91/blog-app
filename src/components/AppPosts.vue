@@ -6,6 +6,7 @@
             Post's ID: {{post.id }}<br>
             Title: {{ post.title }}<br>
             Text: {{ post.text }}<br>
+           <span v-if="post.comments.length !== 0"> Number of comments: {{ post.comments.length }}</span><br>
             <button @click="editPost(post.id)">Edit post</button>
             <button @click="deletePost(post.id)">Delete</button>
             <button @click="viewPost(post.id)">View post</button>
@@ -31,11 +32,10 @@ export default {
       this.$router.push("/post/" + id);
     },
     deletePost(id) {
-        postService.delete(id).then(() => {
-          this.$router.go();
-        });
+      postService.delete(id).then(() => {
+        this.$router.go();
+      });
     }
-
   },
   created() {
     postService.getAll().then(response => {
