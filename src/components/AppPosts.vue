@@ -6,7 +6,7 @@
             Post's ID: {{post.id }}<br>
             Title: {{ post.title }}<br>
             Text: {{ post.text }}<br>
-            <router-link to='/posts/' + post.id> View Post </router-link><br>
+            <button @click="viewPost(post.id)">View post</button>
         </li>
     </ul>
   </div>
@@ -22,7 +22,9 @@ export default {
     };
   },
   methods: {
-   
+      viewPost(id) {
+        this.$router.push("/post/" + id);
+      }
   },
   created() {
     postService.getAll().then(response => {
