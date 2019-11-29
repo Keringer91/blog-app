@@ -1,6 +1,7 @@
 <template>
   <div>
-    <h5>Add new post:</h5>
+    <h5 v-if="$route.name === 'edit'">Edit post ID:{{post.id}}</h5>
+    <h5 v-else>Add a new post</h5>
     <p v-if="errors.length">
         <b>Please correct the following error(s):</b>
         <ul  v-for="(error, index) in errors" :key="index">
@@ -13,7 +14,9 @@
             <label>Text:</label>
             <textarea v-model = "post.text" type="text" id="text"></textarea><br>
             <input type="button" value="Reset Form" onClick="this.form.reset()"/><br>
-            <button @click="checkForm(); addNewPost();" type="submit" value="Submit">Submit</button>
+            <button v-if="$route.name === 'edit'" @click="checkForm(); editPost();" type="submit" value="Submit">Edit</button>
+            <button v-else @click="checkForm(); addNewPost();" type="submit" value="Submit">Add</button>
+            
     </form> 
   </div>
 </template>
@@ -52,7 +55,21 @@ export default {
           this.post = {};
         });
       }
+    },
+    editPost() {
+        if (!this.errors.length) {
+        postService.edit(this.post.id, this.post).then(() => {
+          this.$router.push("/posts");
+          this.post = {};
+        });
+      }
     }
+  },
+  created() {
+    this.id = this.$route.params.id;
+    postService.getId(this.id).then(response => {
+      this.post = response.data;
+    });
   }
 };
 </script>

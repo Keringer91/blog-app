@@ -13,6 +13,9 @@ export default class PostService {
     addPost(post) {
         return axios.post('/posts', post);
     }
+    edit(id, post) {
+        return axios.put('/posts/' + id, post);
+    }
 }
 
 export const postService = new PostService();

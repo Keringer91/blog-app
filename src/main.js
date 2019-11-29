@@ -14,6 +14,7 @@ const routes = [
   { name: "posts", path: "/posts", component: AppPosts },
   { name: "post", path: "/post/:id", component: SinglePost },
   { name: "add", path: "/add", component: AddPost },
+  { name: "edit", path: "/edit/:id", component: AddPost },
 ]
 
 const router = new VueRouter({

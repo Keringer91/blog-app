@@ -6,6 +6,7 @@
             Post's ID: {{post.id }}<br>
             Title: {{ post.title }}<br>
             Text: {{ post.text }}<br>
+            <button @click="editPost(post.id)">Edit post</button>
             <button @click="viewPost(post.id)">View post</button>
         </li>
     </ul>
@@ -22,9 +23,12 @@ export default {
     };
   },
   methods: {
-      viewPost(id) {
-        this.$router.push("/post/" + id);
-      }
+    editPost(id) {
+      this.$router.push("edit/" + id);
+    },
+    viewPost(id) {
+      this.$router.push("/post/" + id);
+    }
   },
   created() {
     postService.getAll().then(response => {
@@ -35,4 +39,5 @@ export default {
 </script>
 
 <style scoped>
+
 </style>
