@@ -7,6 +7,9 @@ export default class PostService {
     getAll() {
         return axios.get('/posts');
     }
+    getId(id) {
+        return axios.get('/posts/' + id);
+    }
 }
 
 export const postService = new PostService();

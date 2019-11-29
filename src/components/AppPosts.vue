@@ -6,6 +6,7 @@
             Post's ID: {{post.id }}<br>
             Title: {{ post.title }}<br>
             Text: {{ post.text }}<br>
+            <router-link to='/posts/' + post.id> View Post </router-link><br>
         </li>
     </ul>
   </div>
