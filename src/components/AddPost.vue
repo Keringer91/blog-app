@@ -6,6 +6,7 @@
             <input v-model = "post.title" type="text" id="title"><br>
             <label>Text:</label>
             <input v-model = "post.text" type="text" id="text"><br>
+            <input type="button" value="Reset Form" onClick="this.form.reset()"/><br>
             <button @click="addNewPost();" type="submit">Submit</button>
     </form> 
   </div>
