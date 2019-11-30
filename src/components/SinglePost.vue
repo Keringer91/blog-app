@@ -9,6 +9,8 @@
             <li>
                 Comment's ID: {{comment.id }}<br>
                 Text: {{ comment.text }}<br>
+                {{ comment.createdAt | formatDate }}<br>
+                {{ comment.createdAt | diffForHumans }}<br>
             </li>
         </ul>
     </div>    
@@ -16,31 +18,31 @@
 </template>
 
 <script>
+import { dateMixin } from "../mixins/DateMixin.js";
 import AddComment from "../components/AddComment";
 import { postService } from "../services/Posts";
 export default {
   name: "AppPosts",
   components: {
-      AddComment
+    AddComment
   },
+  mixins: [dateMixin],
   data() {
     return {
       post: {},
-      id: ''
+      id: ""
     };
   },
-  methods: {
-   
-  },
+  methods: {},
   created() {
     this.id = this.$route.params.id;
     postService.getId(this.id).then(response => {
       this.post = response.data;
-      console.log(this.posts.comments)
     });
   }
 };
 </script>
 
 <style scoped>
+
 </style>

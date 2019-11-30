@@ -7,9 +7,6 @@ export default class PostService {
     getAll() {
         return axios.get('/posts?filter={"include":["comments"]}');
     }
-    // getId(id) {
-    //     return axios.get('/posts/' + id);
-    // }
     addPost(post) {
         return axios.post('/posts', post);
     }
@@ -23,7 +20,7 @@ export default class PostService {
         return axios.post('/posts/' + id + '/comments', comment);
     }
     getId(id) {
-        return axios.get('/posts/'+id+'?filter={"include":["comments"]}');
+        return axios.get('/posts/' + id + '?filter={"include":["comments"]}');
     }
 }
 
